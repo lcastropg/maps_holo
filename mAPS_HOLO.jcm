@@ -1,0 +1,134 @@
+/*
+    mAPS_HOLO
+    ---------------------------
+
+    JaCaMo Project File
+
+    This file defines the initial state of the MAS (initial agents, environment, organisation, ....)
+
+    (see jacamo/doc/jcm.html for more information about what can be defined in this file)
+
+    JaCaMo <VERSION>
+    <DATE>
+*/
+
+mas mAPS_HOLO {
+
+	agent observer
+//	agent failNotifier{
+//		beliefs: nSectors(2), 
+//			     nPSpaces(2)
+//	}
+	
+	agent builder{
+		beliefs: nSectors(1),
+				 nPSpaces(10), //# of parking spaces by sector
+				 structure("HB"),
+				 network(false),
+				 simulation(true)
+	}
+
+
+	agent driver_0 : idriver.asl{
+	    beliefs: driverPrice(5.8),
+		priceWeight(0.5),
+		driverTime(18),
+		timeWeight(0.5)
+		timeToArrive(30000)
+	}
+	 agent driver_1 : idriver.asl{
+		 beliefs: driverPrice(7.4),
+		priceWeight(0.5),
+		driverTime(253),
+		 timeWeight(0.5)
+		 timeToArrive(35000)
+	}
+	 agent driver_2 : idriver.asl{
+		 beliefs: driverPrice(4.8),
+		priceWeight(0.2),
+		driverTime(26),
+		 timeWeight(0.8)
+		 timeToArrive(40000)
+	}
+	 agent driver_3 : idriver.asl{
+		 beliefs: driverPrice(10.1),
+		priceWeight(0.8),
+		driverTime(48),
+		 timeWeight(0.2)
+		 timeToArrive(45000)
+	}
+	 agent driver_4 : idriver.asl{
+		 beliefs: driverPrice(2.5),
+		priceWeight(0.8),
+		driverTime(114),
+		 timeWeight(0.2)
+		 timeToArrive(50000)
+	}
+	 agent driver_5 : idriver.asl{
+		 beliefs: driverPrice(4.0),
+		priceWeight(0.9),
+		driverTime(241),
+		 timeWeight(0.1)
+		 timeToArrive(55000)
+	}
+	 agent driver_6 : idriver.asl{
+		 beliefs: driverPrice(3.9),
+		priceWeight(0.8),
+		driverTime(25),
+		 timeWeight(0.2)
+		 timeToArrive(60000)
+	}
+	 agent driver_7 : idriver.asl{
+		 beliefs: driverPrice(2.3),
+		priceWeight(0.4),
+		driverTime(103),
+		 timeWeight(0.6)
+		 timeToArrive(65000)
+	}
+	 agent driver_8 : idriver.asl{
+		 beliefs: driverPrice(3.9),
+		priceWeight(0.4),
+		driverTime(346),
+		 timeWeight(0.6)
+		 timeToArrive(70000)
+	}
+	 agent driver_9 : idriver.asl{
+		 beliefs: driverPrice(11.3),
+		priceWeight(0.6),
+		driverTime(248),
+		 timeWeight(0.4)
+		 timeToArrive(75000)
+	}
+	 agent driver_10 : idriver.asl{
+		 beliefs: driverPrice(5.3),
+		priceWeight(1.0),
+		driverTime(314),
+		 timeWeight(0.0)
+		 timeToArrive(80000)
+	}
+	
+	
+	organisation maps_holo_org : maps_holo_org.xml {
+		group maps_holo_grp : maps_holo_group {
+			responsible-for: bScheme
+			players: builder r_builder
+					 observer r_observer
+					 debug
+		}
+		
+		scheme pFailScheme : psFail_scheme{
+			debug
+		}
+		
+		scheme sectorFailScheme : sectorFail_scheme{
+			debug
+		}
+		
+		scheme bScheme: build_scheme{
+			debug
+		}
+	} 
+	
+
+}
+
