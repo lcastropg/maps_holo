@@ -46,6 +46,7 @@ getInfoSystem(ST,NET,SIMU,NS,NPS) :- structure(ST) & network(NET) & simulation(S
 	
 +!setupManager : structure(ST)[artifact_id(ART)] <-
 	if(ST = "HB"){
+		jacamo.create_agent("manager","manager.asl");
 	}.
 	
 

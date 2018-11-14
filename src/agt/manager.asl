@@ -5,7 +5,6 @@
 
 !startManager.
 
-
 +!startManager <-
 	
 	.print("Hello!");
@@ -68,8 +67,8 @@
 	.send(observer,achieve,checkQueue).
 
 +!acceptOffer(PSNAME,SECTORNAME)[source(AG)] <-
-	getManagerUtility(PSNAME,MANAGER_UTILITY);
-	addSystemUtility(MANAGER_UTILITY);	 
+//	getManagerUtility(PSNAME,MANAGER_UTILITY);
+//	addSystemUtility(MANAGER_UTILITY);	 
 	.send(SECTORNAME,achieve,acceptOffer(AG,PSNAME)).
 
 +!rejectOffer(PSNAME,SECTORNAME)[source(AG)] <-
